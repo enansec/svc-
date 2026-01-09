@@ -1,0 +1,23 @@
+name: devices by prefix)
+
+on:
+  workflow_dispatch:
+    inputs:
+      : "bullet" }
+      max_count:   { description: "Max devices to delete", required: false, default: "10" }
+      dry_run:     { description: "true = list only; false = delete", required: false, default: "false" }
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  stop:
+    runs-on: windows-latest
+    steps:
+      - name: Delete devices with prefix
+        run: |
+          function Yes($v){ "$v" -match '^(?i:true|1|yes|on)$' }
